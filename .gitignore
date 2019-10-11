@@ -1,3 +1,4 @@
 client_secrets.json
 data/*
 .ipynb_checkpoints/*
+helpers/__pycache__/*
