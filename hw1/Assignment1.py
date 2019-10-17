@@ -24,7 +24,7 @@ import numpy as np
 
 ## library options
 sns.set(color_codes=True, palette="colorblind")
-sns.set(rc={'figure.figsize':(10,7)})
+sns.set(rc={'figure.figsize':(12,8)})
 pd.options.display.max_columns = 50
 
 # +
@@ -88,9 +88,9 @@ matches['timestamp'] = matches['epoch'].apply(lambda x: dt.datetime.fromtimestam
 bets['timestamp'] = bets['odd_epoch'].apply(lambda x: dt.datetime.fromtimestamp(x))
 
 # matches whose match_status is NaN are not played yet, we can remove these data from our base data.
-print('Number of rows before removing nans: {}'.format(len(matches)))
+print('Number of rows before removing NaN\'s: {}'.format(len(matches)))
 matches = matches.dropna(subset=['match_status', 'match_hometeam_score', 'match_awayteam_score'])
-print('Number of rows after removing nans: {}'.format(len(matches)))
+print('Number of rows after removing NaN\'s: {}'.format(len(matches)))
 
 # ## Task1
 
@@ -128,8 +128,9 @@ plt.xlabel("Away Goals")
 plt.ylabel("Number of Games")
 
 # Fitting Poisson on to it
-k = np.arange(matches.match_awayteam_score.max()+1) # length of observed values to calculate prob for each
-                                                    # like [0, 1, 2, 3, ..., n], values will be shifted 0.5 to be centered
+k = np.arange(matches.match_awayteam_score.max()+1) 
+# length of observed values to calculate prob for each
+# like [0, 1, 2, 3, ..., n], values will be shifted 0.5 to be centered
 mean = matches.match_awayteam_score.mean() # mean values of observations
 
 plt.plot(k+0.5, poisson.pmf(k, mean)*len(matches.match_awayteam_score), 'o-')
@@ -151,10 +152,15 @@ print('Mean of home_score - away_score is {}'
 print('Std of home_score - away_score is {}'
       .format((matches.match_hometeam_score - matches.match_awayteam_score).std()))
 
+# Poisson distribution fits well to away and home scores case, whereas the difference between two teams' goals is distributed normally with mean 0.37 and standart deviation 1.89
+
 # ## Task2
 #
 
 # subsetting bets to odd1 oddx odd2 only
+# odd values should be more than 
+print(len(bets))
+bets = bets[bets['value'] > 1]
 print(len(bets))
 bets = bets[bets['variable'].isin(['odd_1', 'odd_x', 'odd_2'])]
 print(len(bets))
@@ -173,14 +179,15 @@ bets = bets[['match_id', 'odd_bookmakers', 'odd_1', 'odd_x', 'odd_2', 'timestamp
 
 bets.head()
 
-# odds shouldn't be less than 1
-bets = bets[(bets['odd_1'] > 1) & (bets['odd_x'] > 1) & (bets['odd_2'] > 1)]
-
 # +
 # Since bets are changing by time, I will use final odds announced by bookmakers
 # by assuming they are correcting their odds somehow
 
 final_bets = bets.groupby(['match_id', 'odd_bookmakers'], as_index=False).last()
+print(len(bets))
+print(len(final_bets))
+# -
+
 final_bets.head()
 
 # +
@@ -211,7 +218,7 @@ matches['result'] = np.where(matches.match_hometeam_score < matches.match_awayte
 
 final_bets = final_bets.merge(matches[['match_id', 'result']], 
                               on='match_id')
-final_bets.head()
+final_bets.head(1)
 
 # +
 # to create an array like [-1. , -0.8, -0.6, -0.4, -0.2,  0. ,  0.2,  0.4,  0.6,  0.8,  1. ]
@@ -249,14 +256,14 @@ def plot_bookmaker_odds(df, plot_name, critical_df=None):
   prob_bins.columns = ['bins', 'total_matches', 'draw_matches', 'draw_ratio', 'mean_draw_prob']
   ax = sns.scatterplot(x="diff", 
                        y="norm_prob_odd_x",
-                       data=df).set_title(plot_name)
+                       data=df).set_title(plot_name, fontsize = 15)
   plt.plot(prob_bins.bins,
            prob_bins.draw_ratio,
-           'o-',
+           'ko-',
            alpha=1)
   plt.plot(prob_bins.bins,
            prob_bins.mean_draw_prob,
-           'o-',
+           'ro-',
            alpha=1)
   label_list = ['Actual Draw Ratios', 'Mean Draw Probs', 'Implied Draw Probs']
   if critical_df is not None:
@@ -269,14 +276,14 @@ def plot_bookmaker_odds(df, plot_name, critical_df=None):
     # critical_prob_bins.columns = ['bins', 'total_matches', 'draw_matches', 'draw_ratio', 'mean_draw_prob']
     plt.plot(critical_prob_bins.bins,
              critical_prob_bins.draw_ratio,
-             'o-',
+             'co-',
              alpha=1)
     # plt.plot(critical_prob_bins.bins,
     #          critical_prob_bins.mean_draw_prob,
     #          'o-',
     #          alpha=1)
   
-    label_list = ['Actual Draw Ratios', 'Mean Draw Probs', 'Actual Draw Ratios - Smoothed', 'Implied Draw Probs']
+    label_list = ['Actual Draw Ratios', 'Mean Draw Probs', 'Actual Draw Ratios - Cleaned', 'Implied Draw Probs']
 
   plt.xlabel('P(Home) - P(Away)')
   plt.ylabel('P(Draw)')
@@ -292,6 +299,10 @@ plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '10Bet'], '10Bet'
 plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '188BET'], '188BET')
 
 plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '1xBet'], '1xBet')
+
+# Separating into 20 bins has very ups and downs, so it's hard to conclude. Therefore I decided to use 10-bins, separated as [-1, -0.8, -0.6, ..., 0.4, 0.6, 0.8, 1] It can be concluded that we can observe significant difference between actual draw probability and implied draw probability when home and away teams are similar (ther probability of winning is near zero)
+#
+# Since there is not that much difference when we look at the all bookmakers case, we can have a feeling that some bookmakers are predicting better than what I randomly selected (4 bookmakers above), so bookmakers are not predicting outcomes of the matches equally.
 
 # ## Task3
 
@@ -321,37 +332,48 @@ def score_difference(col_str):
 goals['score_diff'] = goals['score'].apply(lambda x: score_difference(x))
 goals["prev_score"] = goals["score_diff"].groupby(goals['match_id']).shift(1)
 
-goals.head()
+goals.head(10)
 
 extra_time_goals = goals[goals['time'] > '90']
 critical_goals = extra_time_goals[(extra_time_goals['score_diff'] == 0) | (extra_time_goals['prev_score'] == 0)]
 
 critical_goals.head()
 
-red_card_matches = booking[(booking['time'] < '46') & (booking['card'] == 'red card')]
+print(len(extra_time_goals))
+print(len(critical_goals))
 
-match_results = final_bets[final_bets['odd_bookmakers'] == '1xBet']\
-                [['match_id', 'norm_prob_odd_1', 'norm_prob_odd_x', 'norm_prob_odd_2', 'result']]
-match_results.merge(red_card_matches, on='match_id')
+red_card_matches = booking[(booking['time'] < '30') & (booking['card'] == 'red card')]
+
+print(len(red_card_matches))
 
 critical_matches = critical_goals['match_id'].to_list()
 red_card_matches = red_card_matches['match_id'].to_list()
-
 matches_to_remove = critical_matches + red_card_matches
+print(len(matches_to_remove))
 
-critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & (final_bets['odd_bookmakers'] == '1xBet')]
-plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '1xBet'], '1xBet', critical_df)
+critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove))]
+plot_bookmaker_odds(final_bets, 
+                    'All Bookmakers Critical Matches Removed', 
+                    critical_df)
 
-critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & (final_bets['odd_bookmakers'] == 'Betsson')]
-plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == 'Betsson'], 'Betsson Critical Matches Removed', critical_df)
+critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & 
+                         (final_bets['odd_bookmakers'] == '1xBet')]
+plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '1xBet'], 
+                    '1xBet Critical Matches Removed', 
+                    critical_df)
 
-print(len(final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & (final_bets['odd_bookmakers'] == '10Bet')]))
-print(len(final_bets[final_bets['odd_bookmakers'] == '10Bet']))
+critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & 
+                         (final_bets['odd_bookmakers'] == 'Betsson')]
+plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == 'Betsson'], 
+                    'Betsson Critical Matches Removed', 
+                    critical_df)
 
-critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & (final_bets['odd_bookmakers'] == '10Bet')]
+critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & 
+                         (final_bets['odd_bookmakers'] == '10Bet')]
 plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '10Bet'], '10Bet Critical Matches Removed', critical_df)
 
-critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & (final_bets['odd_bookmakers'] == '188BET')]
+critical_df = final_bets[(~final_bets['match_id'].isin(matches_to_remove)) & 
+                         (final_bets['odd_bookmakers'] == '188BET')]
 plot_bookmaker_odds(final_bets[final_bets['odd_bookmakers'] == '188BET'], '188BET Critical Matches Removed', critical_df)
 
-
+# When we remove extra time goals from our dataset, observed ratios of draws tend to decrease. This might be explained by when there is one goal difference between teams, losing teams might be attacking to gain 1 point, so matches with extra time goals has more probability of draw than normal matches. But there are still place to get money whether there exists extra goal or not. Early red cards does not occur that much, so it's hard to conclude on them.
