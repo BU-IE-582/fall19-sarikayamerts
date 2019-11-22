@@ -12,7 +12,7 @@ You can see my notebook on Assignment 1 [here](https://nbviewer.jupyter.org/gith
 You can see my notebook on Assignment 2 [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-sarikayamerts/blob/master/hw2/Assignment2.ipynb).
 
 #### Assignment3
-You can see my notebook on Assignment 3 [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-sarikayamerts/blob/master/hw2/Assignment3.ipynb).
+You can see my notebook on Assignment 3 [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-sarikayamerts/blob/master/hw3/Assignment3.ipynb).
 
 
 
