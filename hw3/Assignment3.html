@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[121]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13084,6 +13084,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">itertools</span> 
 <span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LinearRegression</span>
@@ -13101,7 +13102,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[122]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;RealTimeConsumption-01012016-21112019.csv&quot;</span><span class="p">)</span>
@@ -13120,7 +13121,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># First 5 observations</span>
@@ -13137,7 +13138,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[123]:</div>
 
 
 
@@ -13216,7 +13217,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Finding each days and looking for the jumps between days, each should be one </span>
@@ -13236,7 +13237,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[124]:</div>
 
 
 
@@ -13264,7 +13265,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># We can see that there is a jump for 86th day, which is 2016-03-28</span>
@@ -13281,7 +13282,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[125]:</div>
 
 
 
@@ -13298,7 +13299,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Checking the missing data (to keep data short, I only looked for first 4 hours)</span>
@@ -13315,7 +13316,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[126]:</div>
 
 
 
@@ -13405,7 +13406,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Filling missing date with the previous values consumption values</span>
@@ -13421,7 +13422,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># After concatenating</span>
@@ -13438,7 +13439,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[128]:</div>
 
 
 
@@ -13559,7 +13560,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Adding lagged values by shifting dataframe&#39;s columns and concatenating them</span>
@@ -13580,7 +13581,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[129]:</div>
 
 
 
@@ -13664,7 +13665,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[130]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Splitting train and test data from 1 November 2019</span>
@@ -13698,7 +13699,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Removing NA or missing values from the data</span>
@@ -13717,7 +13718,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[131]:</div>
 
 
 
@@ -13801,14 +13802,15 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[132]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">calculate_mape</span><span class="p">(</span><span class="n">actual_col</span><span class="p">,</span> <span class="n">predicted_col</span><span class="p">):</span>
   <span class="n">actual_col</span><span class="p">,</span> <span class="n">predicted_col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">actual_col</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted_col</span><span class="p">)</span>
   <span class="k">assert</span> <span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">actual_col</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> \
     <span class="s2">&quot;There are nonpositive values in actual column, consider dropping those observations from the data.&quot;</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">actual_col</span> <span class="o">-</span> <span class="n">predicted_col</span><span class="p">)</span> <span class="o">/</span> <span class="n">actual_col</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">actual_col</span> <span class="o">-</span> <span class="n">predicted_col</span><span class="p">)</span> <span class="o">/</span> <span class="n">actual_col</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> 
+          <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">actual_col</span> <span class="o">-</span> <span class="n">predicted_col</span><span class="p">)</span> <span class="o">/</span> <span class="n">actual_col</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13818,10 +13820,10 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[133]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_a_2</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_a_2</span><span class="p">,</span> <span class="n">list_a_2</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer_a_2</span><span class="p">)</span>
 </pre></div>
 
@@ -13850,10 +13852,10 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[134]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_a_7</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_a_7</span><span class="p">,</span> <span class="n">list_a_7</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answer_a_7</span><span class="p">)</span>
 </pre></div>
 
@@ -13889,7 +13891,7 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[135]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">linear_reg_fnc</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">return_val</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -13900,13 +13902,13 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
   <span class="n">actual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-  <span class="n">mape</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
+  <span class="n">mape</span><span class="p">,</span> <span class="n">result_list</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAPE is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mape</span><span class="p">))</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1"> + </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
                               <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> * </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span> 
                                           <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">)])))</span>
   <span class="k">if</span> <span class="n">return_val</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">mape</span>
+    <span class="k">return</span> <span class="n">mape</span><span class="p">,</span> <span class="n">result_list</span>
 </pre></div>
 
     </div>
@@ -13916,10 +13918,11 @@ Name: Date, Length: 1420, dtype: timedelta64[ns]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[136]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_b</span> <span class="o">=</span> <span class="n">linear_reg_fnc</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">,</span> <span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">return_val</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">answer_b</span><span class="p">,</span> <span class="n">list_b</span> <span class="o">=</span> <span class="n">linear_reg_fnc</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">,</span> <span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span> <span class="n">return_val</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">list_b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">list_b</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13956,19 +13959,23 @@ Consumption = 1610.3746 + 0.3241 * Consumption_Lag48 + 0.6265 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[137]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hour_list</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">][:</span><span class="mi">24</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="n">mape_list_c</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mape_list_c</span><span class="p">,</span> <span class="n">list_c</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="n">hour_list</span><span class="p">:</span>
-  <span class="n">mape_list_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-    <span class="n">linear_reg_fnc</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">hour</span><span class="p">],</span> 
+  <span class="n">result</span> <span class="o">=</span> <span class="n">linear_reg_fnc</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">hour</span><span class="p">],</span> 
                  <span class="n">test</span><span class="p">,</span> 
                  <span class="n">X</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">,</span> <span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">],</span> 
                  <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Consumption&#39;</span><span class="p">],</span>
-                 <span class="n">return_val</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+                 <span class="n">return_val</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">mape_list_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">list_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+  
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">list_c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">list_c</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14115,7 +14122,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[138]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># training with only same hours data</span>
@@ -14304,7 +14311,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[139]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -14320,7 +14327,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[139]:</div>
 
 
 
@@ -14404,7 +14411,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[140]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_wide</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Consumption_Lag48&#39;</span><span class="p">,</span> <span class="s1">&#39;Consumption_Lag168&#39;</span><span class="p">])</span>
@@ -14423,7 +14430,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[140]:</div>
 
 
 
@@ -14604,7 +14611,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[141]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TO SEE CORR MATRIX, WHITER COLOR MEANS MORE SIMILAR</span>
@@ -14617,7 +14624,7 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[142]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">data_wide</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -14638,13 +14645,13 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[142]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f0f9d4d3650&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f31eacf7150&gt;</pre>
 </div>
 
 </div>
@@ -14670,10 +14677,10 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[143]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mape_list_d</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mape_list_d</span><span class="p">,</span> <span class="n">list_d</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="n">hour_list</span><span class="p">:</span>
   <span class="n">X</span> <span class="o">=</span> <span class="n">data_wide</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
   <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">data_wide</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Hour&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">hour</span><span class="p">),</span> <span class="s1">&#39;Consumption&#39;</span><span class="p">])</span>
@@ -14681,7 +14688,9 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
                 <span class="n">selection</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">43</span><span class="p">,</span>
                 <span class="n">alphas</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
   <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-  <span class="n">mape_list_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calculate_mape</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+  <span class="n">output_tuple</span> <span class="o">=</span> <span class="n">calculate_mape</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">mape_list_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">list_d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For </span><span class="si">{}</span><span class="s1"> hour, column with max coefficient is </span><span class="si">{}</span><span class="s1">&#39;</span>
         <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)]))</span>
@@ -14690,6 +14699,8 @@ Consumption = 2842.5799 + 0.4634 * Consumption_Lag48 + 0.4502 * Consumption_Lag1
   <span class="c1"># plt.xticks(rotation=90)</span>
   <span class="c1"># plt.title(hour)</span>
   <span class="c1"># plt.show()</span>
+
+<span class="n">list_d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">list_d</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14758,7 +14769,7 @@ For 23:00 hour, column with max coefficient is Lag_day_2_hour_23
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[144]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># couldn&#39;t make this part, just a beginning</span>
@@ -14795,7 +14806,7 @@ For 23:00 hour, column with max coefficient is Lag_day_2_hour_23
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[145]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;Hours&#39;</span><span class="p">:</span> <span class="n">hour_list</span><span class="p">,</span>
@@ -14843,6 +14854,107 @@ For 23:00 hour, column with max coefficient is Lag_day_2_hour_23
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[146]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">list_a_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_a_7</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_b</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_c</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[146]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(504, 504, 504, 12096, 33936)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">boxplot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;2DaysNaive&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">list_a_2</span><span class="p">),</span> 
+                          <span class="s1">&#39;7DaysNaive&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">list_a_7</span><span class="p">),</span>
+                          <span class="s1">&#39;SeperatedHoursMape&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">list_b</span><span class="p">),</span>
+                          <span class="s1">&#39;LinearModel&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">list_c</span><span class="p">),</span>
+                          <span class="s1">&#39;Lasso&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">list_d</span><span class="p">)})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># I am not displaying outlier points since the number of observations are different for </span>
+<span class="c1"># the first 3 model and remaining because of the hours dimension introduced</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">boxplot_df</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[148]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f31f078a050&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>
