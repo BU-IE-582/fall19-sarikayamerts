@@ -12,7 +12,7 @@ You can see my codes on Assignment 3 [here](hw3/Assignment3.html).
 
 ## Assignment 4 - 15/12/2019
 
-You can see our group codes on Assignment 4 [here](https://github.com/BU-IE-582/fall19-erdembanak/blob/master/HW4_Group2.html).
+You can see our group codes on Assignment 4 [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-erdembanak/blob/master/HW4_Group2.ipynb).
 
 ## Project Report - 03/12/2019
 
