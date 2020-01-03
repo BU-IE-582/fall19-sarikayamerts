@@ -18,7 +18,7 @@ You can see my notebook on Assignment 3 [here](https://nbviewer.jupyter.org/gith
 You can see our group codes on Assignment 4 [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-erdembanak/blob/master/HW4_Group2.ipynb).
 
 ## Project Report - 03/12/2019
-You can see our project report  [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-sarikayamerts/blob/master/hw3/ProjectReport.ipynb).
+You can see our project report  [here](https://nbviewer.jupyter.org/github/BU-IE-582/fall19-sarikayamerts/blob/master/ProjectReport.ipynb).
 
 
 
